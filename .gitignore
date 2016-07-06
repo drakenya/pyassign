@@ -1,2 +1,12 @@
+# IDE junk
 .idea/
+
+# virtualenv
 env/
+
+# python internal server
+__pycache__/
+*.py[cod]
+
+# testing database
+db.sqlite3
