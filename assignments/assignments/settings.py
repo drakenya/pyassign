@@ -120,3 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+API_ENDPOINTS = {
+    'qassigns': 'http://localhost:5000/entry/',
+}
