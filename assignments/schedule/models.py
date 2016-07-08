@@ -26,6 +26,9 @@ class Part(models.Model):
     short_name = models.CharField(max_length=8)
     sort_order = models.IntegerField()
 
+    khs_id_field = models.CharField(max_length=64, null=True, blank=True)
+    khs_title_field = models.CharField(max_length=64, null=True, blank=True)
+
     category = models.ForeignKey(PartCategory, on_delete=models.CASCADE)
 
     def __str__(self):

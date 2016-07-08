@@ -34,3 +34,13 @@ class InitialCacheLookup:
             return account.id
         except Account.DoesNotExist:
             return None
+
+
+class AccountCacheLookup:
+    @staticmethod
+    def lookup(key):
+        try:
+            account = Account.objects.get(khsid=key)
+            return account.id
+        except Account.DoesNotExist:
+            return None

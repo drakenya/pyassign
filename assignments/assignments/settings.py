@@ -123,4 +123,5 @@ STATIC_URL = '/static/'
 
 API_ENDPOINTS = {
     'qassigns': 'http://localhost:5000/entry/',
+    'khsapi': 'http://khs-api.local/',
 }
