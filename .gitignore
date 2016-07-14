@@ -1,5 +1,6 @@
 # IDE junk
 .idea/
+.vscode/
 
 # virtualenv
 env/
