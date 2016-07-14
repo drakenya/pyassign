@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static "schedule/css/main.css" %}">
+
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Assignments</title>
+    </head>
+
+    <body>
+        {% include 'schedule/include/analytics_tracking.html' %}
+        {% include 'schedule/include/navbar.html' %}
+
+        <div class="container">
+            {% block main_content %}{% endblock %}
+        </div>
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/2.3.0/knockout-min.js"></script>
+        <script src="{% static "schedule/js/main.js" %}"></script>
+    </body>
+</html>

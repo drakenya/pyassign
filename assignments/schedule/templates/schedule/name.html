@@ -1,0 +1,18 @@
+{% extends "schedule/include/base.html" %}
+
+{% block main_content %}
+    {% for assignment in assignments.all %}
+        {% ifchanged assignment.account %}
+            {% if not forloop.first %}
+                {% include 'schedule/name/table_end.html' %}
+            {% endif %}
+            {% include 'schedule/name/table_start.html' %}
+        {% endifchanged %}
+        <tr>
+            <td>{{ assignment.date }}</td>
+            <td>{{ assignment.part }}</td>
+            <td>{{ assignment.description }}</td>
+        </tr>
+    {% endfor %}
+    {% include 'schedule/name/table_end.html' %}
+{% endblock %}

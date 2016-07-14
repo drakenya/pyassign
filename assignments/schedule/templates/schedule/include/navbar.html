@@ -1,0 +1,63 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="{% url 'index' %}">Assignments</a>
+		</div>
+
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Listings <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="{% url 'by_date' %}">By date</a></li>
+						<li><a href="{% url 'by_name' %}">By name</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Schedules <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="/schedules/chairman-reader">Chairman / Reader</a></li>
+						<li><a href="/schedules/sound">Sound</a></li>
+						<li><a href="/schedules/grid">Grid</a></li>
+						<li class="divider"></li>
+						<li><a href="/schedules/khs/sound">KHS Sound</a></li>
+						<li><a href="/schedules/khs/incoming">KHS Incoming</a></li>
+						<li><a href="/schedules/khs/outgoing">KHS Outgoing</a></li>
+					</ul>
+				</li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="/update">Update (last: )</a></li>
+						<li class="divider"></li>
+						<li><a href="/name/list">Names</a></li>
+						<li><a href="/part/list">Parts</a></li>
+						<li><a href="/category/list">Categories</a></li>
+						<li><a href="/schedule/list">Schedules</a></li>
+						<li class="divider"></li>
+						<li><a href="/khs/names-to-ids">KHS Names to IDs</a></li>
+						<li class="divider"></li>
+						<li><a href="/queue/will-send-today">Emails for Today</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Utilities <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="/territory">Territories</a></li>
+                        <li><a href="/house-holders">House Holders</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
