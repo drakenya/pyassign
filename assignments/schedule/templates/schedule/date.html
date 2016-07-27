@@ -9,9 +9,9 @@
             {% include 'schedule/date/table_start.html' %}
         {% endifchanged %}
         <tr>
-            <td>{{ assignment.account }}</td>
             <td>{{ assignment.part }}</td>
-            <td>{{ assignment.description }}</td>
+            <td>{{ assignment.account }}</td>
+            <td>{{ assignment.description|default:"" }}</td>
         </tr>
     {% endfor %}
     {% include 'schedule/date/table_end.html' %}

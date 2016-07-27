@@ -11,7 +11,7 @@
         <tr>
             <td>{{ assignment.date }}</td>
             <td>{{ assignment.part }}</td>
-            <td>{{ assignment.description }}</td>
+            <td>{{ assignment.description|default:"" }}</td>
         </tr>
     {% endfor %}
     {% include 'schedule/name/table_end.html' %}
