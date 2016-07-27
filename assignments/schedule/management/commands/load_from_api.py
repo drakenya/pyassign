@@ -9,5 +9,5 @@ class Command(BaseCommand):
         Assignment.objects.all().delete()
 
         QassignLoader.load()
-        for endpoint in ['oclm']:
+        for endpoint in ['oclm', 'sound', 'schedule', 'outgoing/all']:
             KhsLoader.load(endpoint)
