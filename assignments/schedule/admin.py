@@ -26,11 +26,20 @@ class UserAdmin(BaseUserAdmin):
     account_khsid.short_description = 'KHS ID'
 
 
+@admin.register(Part)
+class PartAdmin(admin.ModelAdmin):
+    list_display = ('name', 'category', 'short_name', 'khs_id_field', 'khs_title_field')
+    ordering = ('category__sort_order', 'sort_order', 'name')
+
+
+@admin.register(Assignment)
+class AssignmentAdmin(admin.ModelAdmin):
+    list_display = ('date', 'part', 'account', 'description')
+    ordering = ('date', 'part__category__sort_order', 'part__sort_order')
+
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
 # Register your models here.
 admin.site.register(PartCategory)
-admin.site.register(Part)
-admin.site.register(Assignment)

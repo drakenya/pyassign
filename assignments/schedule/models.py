@@ -10,7 +10,9 @@ class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user.last_name + ', ' + self.user.first_name
+        if self.user.last_name and self.user.first_name:
+            return self.user.last_name + ', ' + self.user.first_name
+        return self.user.username
 
 
 class PartCategory(models.Model):
