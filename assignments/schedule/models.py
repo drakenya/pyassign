@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Account(models.Model):
-    initials = models.CharField(max_length=4)
-    khsid = models.IntegerField()
+    initials = models.CharField(max_length=4, blank=True)
+    khsid = models.IntegerField(null=True, blank=True)
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
@@ -39,7 +39,7 @@ class Part(models.Model):
 
 class Assignment(models.Model):
     date = models.DateField()
-    description = models.CharField(max_length=256)
+    description = models.CharField(max_length=256, null=True)
 
     account = models.ForeignKey(Account)
     part = models.ForeignKey(Part)
