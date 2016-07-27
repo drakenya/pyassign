@@ -45,7 +45,11 @@ class KhsLoader:
 
             for findable in findable_parts:
                 key = findable.khs_id_field[len(khs_prefix):]
+                title_key = findable.khs_title_field[len(khs_prefix):].strip()
+
                 if item[key] is not None and account_cache[item[key]] is not None:
                     account_id = account_cache[item[key]]
-                    assignment = Assignment(date=date, part=findable, account_id=account_id)
+                    title = item[title_key] if (title_key and item[title_key] is not None) else None
+
+                    assignment = Assignment(date=date, part=findable, description=title, account_id=account_id)
                     assignment.save()
