@@ -8,4 +8,5 @@ urlpatterns = [
     url('^name', views.by_name, name='by_name'),
     url('^incoming$', views.incoming, name='incoming_speakers'),
     url('^outgoing$', views.outgoing, name='outgoing_speakers'),
+    url('^sound$', views.sound, name='sound_schedule'),
 ]

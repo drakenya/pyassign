@@ -45,3 +45,17 @@ def outgoing(request):
     outging_speakers = Assignment.objects.filter(part__short_name='pt').order_by('date')
     context = {'outgoing_speakers': outging_speakers}
     return render(request, 'schedule/outgoing.html', context)
+
+
+def sound(request):
+    all_sound = Assignment.objects.filter(part__short_name__in=['console', 'rove1', 'rove2', 'stage', 'att'])
+    sound_schedule = {}
+
+    for item in all_sound:
+        if not str(item.date) in sound_schedule:
+            sound_schedule[str(item.date)] = {'date': item.date}
+
+        sound_schedule[str(item.date)][item.part.short_name] = item
+
+    context = {'sound_schedule': sound_schedule}
+    return render(request, 'schedule/sound.html', context)

@@ -1,0 +1,28 @@
+{% extends "schedule/include/base.html" %}
+
+{% block main_content %}
+    <table class="table table-striped assignments">
+        <caption>Sound Schedule</caption>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Console</th>
+                <th colspan="2">Rove</th>
+                <th>Stage</th>
+                <th>Attendant</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for date, day in sound_schedule.items %}
+                <tr>
+                    <td>{{ day.date|date:"N j, Y (D)" }}</td>
+                    <td>{{ day.console.account }}</td>
+                    <td>{{ day.rove1.account }}</td>
+                    <td>{{ day.rove2.account }}</td>
+                    <td>{{ day.stage.account }}</td>
+                    <td>{{ day.att.account }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
