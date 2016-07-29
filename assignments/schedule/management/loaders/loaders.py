@@ -4,7 +4,7 @@ import json
 from django.conf import settings
 
 from ..cache import cache
-from ...models import Assignment, Part
+from ...models import Assignment, Incoming, Part
 
 
 class QassignLoader:
@@ -53,3 +53,20 @@ class KhsLoader:
 
                     assignment = Assignment(date=date, part=findable, description=title, account_id=account_id)
                     assignment.save()
+
+
+class IncomingLoader:
+    @staticmethod
+    def load():
+        response = urllib.request.urlopen(settings.API_ENDPOINTS['khsapi'] + 'schedule/')
+        string_response = response.readall().decode('utf-8')
+        data = json.loads(string_response)
+
+        for item in data:
+            date = item['date']
+            speaker_full_name = item['speaker']['full_name'] if item['speaker'] and item['speaker']['full_name'] else ""
+            outline_name = item['outline']['name'] if item['outline'] and item['outline']['name'] else ""
+            congregation_name = item['congregation']['name'] if item['congregation'] and item['congregation']['name'] else ""
+
+            incoming = Incoming(date=date, speaker_full_name=speaker_full_name, outline_name=outline_name, congregation_name=congregation_name)
+            incoming.save()

@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 
 from .models import Account
-from .models import PartCategory, Part, Assignment
+from .models import PartCategory, Part, Assignment, Incoming
 
 
 # User/Account
@@ -36,6 +36,12 @@ class PartAdmin(admin.ModelAdmin):
 class AssignmentAdmin(admin.ModelAdmin):
     list_display = ('date', 'part', 'account', 'description')
     ordering = ('date', 'part__category__sort_order', 'part__sort_order')
+
+
+@admin.register(Incoming)
+class IncomingAdmin(admin.ModelAdmin):
+    list_display = ('date', 'speaker_full_name', 'congregation_name', 'outline_name')
+    ordering = ('date',)
 
 
 admin.site.unregister(User)

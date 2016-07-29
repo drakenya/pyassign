@@ -46,3 +46,10 @@ class Assignment(models.Model):
 
     def __str__(self):
         return self.date.strftime('%m/%d/%Y') + ': ' + str(self.account)
+
+
+class Incoming(models.Model):
+    date = models.DateField()
+    outline_name = models.CharField(max_length=256)
+    speaker_full_name = models.CharField(max_length=256)
+    congregation_name = models.CharField(max_length=128)
