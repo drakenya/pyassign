@@ -59,3 +59,17 @@ def sound(request):
 
     context = {'sound_schedule': sound_schedule}
     return render(request, 'schedule/sound.html', context)
+
+
+def chairman_reader(request):
+    all_chairman_reader = Assignment.objects.filter(part__short_name__in=['chr', 'wtr'])
+    chairman_reader_schedule = {}
+
+    for item in all_chairman_reader:
+        if not str(item.date) in chairman_reader_schedule:
+            chairman_reader_schedule[str(item.date)] = {'date': item.date}
+
+        chairman_reader_schedule[str(item.date)][item.part.short_name] = item
+
+    context = {'chairman_reader_schedule': chairman_reader_schedule}
+    return render(request, 'schedule/chairman_reader.html', context)
