@@ -39,3 +39,9 @@ def incoming(request):
     incoming_speakers = [dict(zip(columns, row)) for row in cursor.fetchall()]
     context = {'incoming_speakers': incoming_speakers}
     return render(request, 'schedule/incoming.html', context)
+
+
+def outgoing(request):
+    outging_speakers = Assignment.objects.filter(part__short_name='pt').order_by('date')
+    context = {'outgoing_speakers': outging_speakers}
+    return render(request, 'schedule/outgoing.html', context)

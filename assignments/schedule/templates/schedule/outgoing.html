@@ -1,0 +1,23 @@
+{% extends "schedule/include/base.html" %}
+
+{% block main_content %}
+    <table class="table table-striped assignments">
+        <caption>Outgoing Speakers</caption>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Speaker</th>
+                <th>Outline</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for speaker in outgoing_speakers.all %}
+                <tr>
+                    <td>{{ speaker.date }}</td>
+                    <td>{{ speaker.account.user.first_name }} {{ speaker.account.user.last_name }}</td>
+                    <td>{{ speaker.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
