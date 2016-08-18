@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.db import connection
 from django.contrib.auth.models import User
 
 from .models import Assignment, Incoming, Part, Account
 from .management.email import emailing
+from .management.loaders.controller import LoadController
 
 
 # Create your views here.
@@ -80,3 +81,8 @@ def todays_emails(request):
     emailings = emailing.Email.get_todays_emails()
     context = {'emailings': emailings}
     return render(request, 'schedule/todays_emails.html', context)
+
+
+def update_all(request):
+    LoadController.load_all()
+    return redirect('index')
