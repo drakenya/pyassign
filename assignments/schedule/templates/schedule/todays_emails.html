@@ -1,0 +1,41 @@
+{% extends "schedule/include/base.html" %}
+
+{% block main_content %}
+    <table class="table table-striped assignments">
+        <caption>Todays Emails</caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Date</th>
+                <th>Part</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for email, listing in emailings.items %}
+                {% for date, parts in listing.items %}
+                    {% for part, description in parts.parts %}
+                        <tr>
+                            <td>{{ parts.name }}</td>
+                            <td>{{ email }}</td>
+                            <td>{{ date }}</td>
+                            <td>{{ part }} {% if description %}({{ description }}){% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+<!--Your upcoming assignments:-->
+<!--<ul>-->
+    <!--{% for date, parts in context.items %}-->
+    <!--<li>{{ date }}</li>-->
+    <!--<ul>-->
+        <!--{% for part, description in parts.parts %}-->
+        <!--<li>{{ part }} {% if description %}({{ description }}){% endif %}</li>-->
+        <!--{% endfor %}-->
+    <!--</ul>-->
+    <!--{% endfor %}-->
+<!--</ul>-->

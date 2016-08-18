@@ -1,0 +1,8 @@
+Your upcoming assignments:
+
+{% for date, parts in context.items %}
+{{ date }}
+    {% for part, description in parts.parts %}
+    -> {{ part }} {% if description %}({{ description }}){% endif %}
+    {% endfor %}
+{% endfor %}

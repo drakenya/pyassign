@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 
 from .models import Account
-from .models import PartCategory, Part, Assignment, Incoming
+from .models import Emailer, PartCategory, Part, Assignment, Incoming
 
 
 # User/Account
@@ -42,6 +42,12 @@ class AssignmentAdmin(admin.ModelAdmin):
 class IncomingAdmin(admin.ModelAdmin):
     list_display = ('date', 'speaker_full_name', 'congregation_name', 'outline_name')
     ordering = ('date',)
+
+
+@admin.register(Emailer)
+class EmailerAdmin(admin.ModelAdmin):
+    list_display = ('account', 'days_before')
+    ordering = ('account', 'days_before')
 
 
 admin.site.unregister(User)

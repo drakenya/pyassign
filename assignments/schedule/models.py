@@ -53,3 +53,9 @@ class Incoming(models.Model):
     outline_name = models.CharField(max_length=256)
     speaker_full_name = models.CharField(max_length=256)
     congregation_name = models.CharField(max_length=128)
+
+
+class Emailer(models.Model):
+    days_before = models.IntegerField(default=2)
+
+    account = models.ForeignKey(Account)

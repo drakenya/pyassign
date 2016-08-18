@@ -10,4 +10,5 @@ urlpatterns = [
     url('^outgoing$', views.outgoing, name='outgoing_speakers'),
     url('^sound$', views.sound, name='sound_schedule'),
     url('^chairman-reader$', views.chairman_reader, name='chairman_reader_schedule'),
+    url('^todays-emails$', views.todays_emails, name='todays_emails'),
 ]

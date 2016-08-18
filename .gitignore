@@ -14,3 +14,6 @@ db.sqlite3
 
 # fixtures
 fixtures/
+
+# local settings file
+settings_local.py

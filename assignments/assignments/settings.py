@@ -128,6 +128,17 @@ STATICFILES_DIRS = (
 )
 
 API_ENDPOINTS = {
-    'qassigns': 'http://localhost:5000/entry/',
+    'qassigns': 'http://assign-api.local/entry/',
     'khsapi': 'http://khs-api.local/',
 }
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'null@example.com'
+EMAIL_HOST_PASSWORD = 'password'
+EMAIL_PORT = 587
+
+REMINDER_EMAIL_FROM = 'null@example.com'
+REMINDER_EMAIL_SUBJECT = 'Upcoming Assignments'
+
+from .settings_local import *
