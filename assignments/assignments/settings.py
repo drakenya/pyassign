@@ -128,7 +128,7 @@ STATICFILES_DIRS = (
 )
 
 API_ENDPOINTS = {
-    'qassigns': 'http://assign-api.local/entry/',
+    'qassigns': 'http://assign-api.local/',
     'khsapi': 'http://khs-api.local/',
 }
 

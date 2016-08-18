@@ -10,7 +10,7 @@ from ...models import Assignment, Incoming, Part
 class QassignLoader:
     @staticmethod
     def load():
-        response = urllib.request.urlopen(settings.API_ENDPOINTS['qassigns'])
+        response = urllib.request.urlopen(settings.API_ENDPOINTS['qassigns'] + 'entry/')
         string_response = response.readall().decode('utf-8')
         data = json.loads(string_response)
 

@@ -1,15 +1,9 @@
 from django.core.management.base import BaseCommand
 
-from ...models import Assignment, Incoming
-from ..loaders.loaders import IncomingLoader, KhsLoader, QassignLoader
+from ..loaders.controller import LoadController
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        Assignment.objects.all().delete()
-        Incoming.objects.all().delete()
+        LoadController.load_all()
 
-        QassignLoader.load()
-        for endpoint in ['oclm', 'sound', 'schedule', 'outgoing/all']:
-            KhsLoader.load(endpoint)
-        IncomingLoader.load()
