@@ -13,7 +13,7 @@ class LoadController:
         cls._update_endpoints()
 
         # Clear current db cache
-        cls._update_endpoints()
+        cls._clear_db_cache()
 
         # Load all
         cls._update_data_from_endpoints()
