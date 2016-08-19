@@ -3,7 +3,7 @@ from datetime import date
 from django.shortcuts import redirect, render
 from django.db import connection
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 from .models import Assignment, Incoming, Part, Account
 from .management.email import emailing
@@ -31,12 +31,14 @@ def by_name(request):
     return render(request, 'schedule/name.html', context)
 
 
+@login_required()
 def my_assignments(request):
     assignments = Assignment.objects.filter(date__gte=date.today()).filter(account__user__id=request.user.id).order_by('account__user__last_name', 'account__user__first_name')
     context = {'assignments': assignments}
     return render(request, 'schedule/name.html', context)
 
 
+@login_required()
 def incoming(request):
     sql = """
         SELECT {0}.date, speaker_full_name, congregation_name, outline_name, first_name, last_name
@@ -55,12 +57,14 @@ def incoming(request):
     return render(request, 'schedule/incoming.html', context)
 
 
+@login_required()
 def outgoing(request):
     outging_speakers = Assignment.objects.filter(date__gte=date.today()).filter(part__short_name='pt').order_by('date')
     context = {'outgoing_speakers': outging_speakers}
     return render(request, 'schedule/outgoing.html', context)
 
 
+@login_required()
 def sound(request):
     all_sound = Assignment.objects.filter(date__gte=date.today()).filter(part__short_name__in=['console', 'rove1', 'rove2', 'stage', 'att'])
     sound_schedule = {}
@@ -75,6 +79,7 @@ def sound(request):
     return render(request, 'schedule/sound.html', context)
 
 
+@login_required()
 def chairman_reader(request):
     all_chairman_reader = Assignment.objects.filter(date__gte=date.today()).filter(part__short_name__in=['chr', 'wtr'])
     chairman_reader_schedule = {}
@@ -89,12 +94,14 @@ def chairman_reader(request):
     return render(request, 'schedule/chairman_reader.html', context)
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def todays_emails(request):
     emailings = emailing.Email.get_todays_emails()
     context = {'emailings': emailings}
     return render(request, 'schedule/todays_emails.html', context)
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def update_all(request):
     LoadController.load_all()
     return redirect('index')
