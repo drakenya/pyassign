@@ -47,8 +47,15 @@ def incoming(request):
             LEFT JOIN {2} ON ({2}.id = {1}.part_id)
             LEFT JOIN {3} ON ({3}.id = {1}.account_id)
             LEFT JOIN {4} ON ({4}.id = {3}.user_id)
-        WHERE ({2}.short_name = 'h' OR {2}.id IS NULL)
-        """.format(Incoming._meta.db_table, Assignment._meta.db_table, Part._meta.db_table, Account._meta.db_table, User._meta.db_table)
+        WHERE {0}.date >= '{5}'
+            AND ({2}.short_name = 'h' OR {2}.id IS NULL)
+        """.format(Incoming._meta.db_table,   # {0}
+                   Assignment._meta.db_table, # {1}
+                   Part._meta.db_table,       # {2}
+                   Account._meta.db_table,    # {3}
+                   User._meta.db_table,       # {4}
+                   date.today()               # {5}
+                  )
     cursor = connection.cursor()
     cursor.execute(sql)
     columns = [col[0] for col in cursor.description]
