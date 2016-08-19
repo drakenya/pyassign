@@ -6,6 +6,7 @@ urlpatterns = [
     url('^$', views.by_date, name='index'),
     url('^date', views.by_date, name='by_date'),
     url('^name', views.by_name, name='by_name'),
+    url('^my-assignments$', views.my_assignments, name='my_assignments'),
     url('^incoming$', views.incoming, name='incoming_speakers'),
     url('^outgoing$', views.outgoing, name='outgoing_speakers'),
     url('^sound$', views.sound, name='sound_schedule'),

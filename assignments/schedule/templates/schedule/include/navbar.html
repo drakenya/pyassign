@@ -22,33 +22,16 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Schedules <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="/schedule/chairman-reader">Chairman, Reader Schedule</a></li>
-						<li><a href="/schedule/sound">Sound Schedule</a></li>
-						<li><a href="/schedules/grid">Grid</a></li>
+						<li><a href="{% url 'chairman_reader_schedule' %}">Chairman, Reader Schedule</a></li>
+						<li><a href="{% url 'sound_schedule' %}">Sound Schedule</a></li>
 						<li class="divider"></li>
-						<li><a href="/schedule/incoming">Incoming Speakers</a></li>
-						<li><a href="/schedule/outgoing">Outgoing Speakers</a></li>
+						<li><a href="{% url 'incoming_speakers' %}">Incoming Speakers</a></li>
+						<li><a href="{% url 'outgoing_speakers' %}">Outgoing Speakers</a></li>
 					</ul>
 				</li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="/schedule/update-all">Update All</a></li>
-						<li class="divider"></li>
-						<li><a href="/name/list">Names</a></li>
-						<li><a href="/part/list">Parts</a></li>
-						<li><a href="/category/list">Categories</a></li>
-						<li><a href="/schedule/list">Schedules</a></li>
-						<li class="divider"></li>
-						<li><a href="/khs/names-to-ids">KHS Names to IDs</a></li>
-						<li class="divider"></li>
-						<li><a href="/schedule/todays-emails">Emails for Today</a></li>
-					</ul>
-				</li>
-
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Utilities <b class="caret"></b></a>
 					<ul class="dropdown-menu">
@@ -56,6 +39,16 @@
                         <li><a href="/house-holders">House Holders</a></li>
 					</ul>
 				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="{% url 'update_all' %}">Update All</a></li>
+						<li><a href="{% url 'todays_emails' %}">Emails for Today</a></li>
+					</ul>
+				</li>
+
+				<li><a href="{% url 'logout' %}">Logout</a></li>
 			</ul>
 		</div>
 	</div>

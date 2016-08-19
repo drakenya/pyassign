@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.db import connection
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from .models import Assignment, Incoming, Part, Account
 from .management.email import emailing
@@ -8,18 +9,27 @@ from .management.loaders.controller import LoadController
 
 
 # Create your views here.
+@login_required
 def index(request):
     context = {}
     return render(request, 'schedule/index.html', context)
 
 
+@login_required
 def by_date(request):
     assignments = Assignment.objects.order_by('date')
     context = {'assignments': assignments}
     return render(request, 'schedule/date.html', context)
 
 
+@login_required
 def by_name(request):
+    assignments = Assignment.objects.order_by('account__user__last_name', 'account__user__first_name')
+    context = {'assignments': assignments}
+    return render(request, 'schedule/name.html', context)
+
+
+def my_assignments(request):
     assignments = Assignment.objects.order_by('account__user__last_name', 'account__user__first_name')
     context = {'assignments': assignments}
     return render(request, 'schedule/name.html', context)
