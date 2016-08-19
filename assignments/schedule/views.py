@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.shortcuts import redirect, render
 from django.db import connection
 from django.contrib.auth.models import User
@@ -17,20 +19,20 @@ def index(request):
 
 @login_required
 def by_date(request):
-    assignments = Assignment.objects.order_by('date')
+    assignments = Assignment.objects.filter(date__gte=date.today()).order_by('date')
     context = {'assignments': assignments}
     return render(request, 'schedule/date.html', context)
 
 
 @login_required
 def by_name(request):
-    assignments = Assignment.objects.order_by('account__user__last_name', 'account__user__first_name')
+    assignments = Assignment.objects.filter(date__gte=date.today()).order_by('account__user__last_name', 'account__user__first_name')
     context = {'assignments': assignments}
     return render(request, 'schedule/name.html', context)
 
 
 def my_assignments(request):
-    assignments = Assignment.objects.order_by('account__user__last_name', 'account__user__first_name')
+    assignments = Assignment.objects.filter(date__gte=date.today()).filter(account__user__id=request.user.id).order_by('account__user__last_name', 'account__user__first_name')
     context = {'assignments': assignments}
     return render(request, 'schedule/name.html', context)
 
@@ -54,13 +56,13 @@ def incoming(request):
 
 
 def outgoing(request):
-    outging_speakers = Assignment.objects.filter(part__short_name='pt').order_by('date')
+    outging_speakers = Assignment.objects.filter(date__gte=date.today()).filter(part__short_name='pt').order_by('date')
     context = {'outgoing_speakers': outging_speakers}
     return render(request, 'schedule/outgoing.html', context)
 
 
 def sound(request):
-    all_sound = Assignment.objects.filter(part__short_name__in=['console', 'rove1', 'rove2', 'stage', 'att'])
+    all_sound = Assignment.objects.filter(date__gte=date.today()).filter(part__short_name__in=['console', 'rove1', 'rove2', 'stage', 'att'])
     sound_schedule = {}
 
     for item in all_sound:
@@ -74,7 +76,7 @@ def sound(request):
 
 
 def chairman_reader(request):
-    all_chairman_reader = Assignment.objects.filter(part__short_name__in=['chr', 'wtr'])
+    all_chairman_reader = Assignment.objects.filter(date__gte=date.today()).filter(part__short_name__in=['chr', 'wtr'])
     chairman_reader_schedule = {}
 
     for item in all_chairman_reader:
